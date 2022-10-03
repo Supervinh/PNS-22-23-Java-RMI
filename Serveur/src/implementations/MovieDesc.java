@@ -1,6 +1,8 @@
 package implementations;
 
-public class MovieDesc {
+import java.io.Serializable;
+
+public class MovieDesc implements Serializable {
     String movieName;
     String isbn;
     String synopsis;

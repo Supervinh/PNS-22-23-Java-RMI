@@ -1,38 +1,32 @@
 package implementations;
 
-import contrats.Distante;
-import contrats.Service;
+import contrats.IConnection;
+import contrats.IVODService;
+import contrats.InvalidCredentialException;
+import contrats.SignUpFailed;
 
 import java.lang.reflect.Array;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
-public class Connection extends UnicastRemoteObject implements Distante {
+public class Connection extends UnicastRemoteObject implements Remote, IConnection {
 
-    private Service service;
-    Array clientList;
-    //xxx Movies;
+    List<User> userList;
+
 
     public Connection(int i) throws RemoteException{
-        service = new IntObjet();
-    }
-
-
-
-
-    /*private Service service;
-
-    public ObjetDistant(int i) throws RemoteException {
-        service = new IntObjet();
+        super(i);
     }
 
     @Override
-    public void echo() throws RemoteException, InterruptedException {
-        System.out.println("World");
+    public boolean register(String mail, String pwd) throws RemoteException, SignUpFailed {
+        return false;
     }
 
     @Override
-    public Service getServiceAccess(){
-        return service;
-    }*/
+    public IVODService login(String mail, String pwd) throws RemoteException, InvalidCredentialException {
+        return null;
+    }
 }
