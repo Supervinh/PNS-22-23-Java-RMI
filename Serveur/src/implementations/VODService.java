@@ -1,6 +1,5 @@
 package implementations;
 
-import contrats.IBill;
 import contrats.IConnection;
 import contrats.IVODService;
 
@@ -20,7 +19,7 @@ public class VODService extends UnicastRemoteObject implements IVODService {
     }
 
     @Override
-    public IBill playmovie(String isbn, IConnection box) throws RemoteException{
+    public Bill playmovie(String isbn, IConnection box) throws RemoteException{
         return null;
     }
 }

@@ -1,9 +1,6 @@
 package implementations;
 
-import contrats.IBill;
-
 import java.io.Serializable;
-import java.math.BigInteger;
 
 public class Bill implements Serializable, IBill {
     String movieName;
