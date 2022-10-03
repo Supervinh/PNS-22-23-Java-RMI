@@ -6,5 +6,5 @@ import java.rmi.RemoteException;
 
 public interface Client extends Remote {
 
-    void facturer(Facture f) throws RemoteException;
+    //void facturer(Facture f) throws RemoteException;
 }
