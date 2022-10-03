@@ -1,7 +1,6 @@
 package implementations;
 
 import contrats.Client;
-import contrats.Facture;
 import contrats.Service;
 
 import java.rmi.RemoteException;
@@ -27,17 +26,17 @@ public class IntObjet extends UnicastRemoteObject implements Service, Client {
     public synchronized int setValue(int v, Client cname) throws RemoteException{
         value=value*v;
         System.out.println("Thread:"+Thread.currentThread().getName()+" val renvoyée : " + value + "au Client "+cname);
-        Facture f= new Facture(v) ; // prix à payer pour cette opération
-        try {
+        //Bill f= new Bill(v) ; // prix à payer pour cette opération
+        /*try {
             cname.facturer(f); // délivre la facture à cname !
-        } catch (java.rmi.RemoteException e) {}
+        } catch (java.rmi.RemoteException e) {}*/
         return value;
 
     }
 
 
-    @Override
-    public void facturer(Facture f) throws RemoteException {
+    /*@Override
+    public void facturer(Bill f) throws RemoteException {
         System.out.println(f);
-    }
+    }*/
 }
