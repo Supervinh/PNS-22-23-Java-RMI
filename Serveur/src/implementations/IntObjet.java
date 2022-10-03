@@ -26,7 +26,7 @@ public class IntObjet extends UnicastRemoteObject implements Service, Client {
     public synchronized int setValue(int v, Client cname) throws RemoteException{
         value=value*v;
         System.out.println("Thread:"+Thread.currentThread().getName()+" val renvoyée : " + value + "au Client "+cname);
-        Bill f= new Bill(v) ; // prix à payer pour cette opération
+        //Bill f= new Bill(v) ; // prix à payer pour cette opération
         /*try {
             cname.facturer(f); // délivre la facture à cname !
         } catch (java.rmi.RemoteException e) {}*/

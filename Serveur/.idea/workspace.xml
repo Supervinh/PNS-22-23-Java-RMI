@@ -2,22 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e002c8cd-d367-44d0-b280-98e68de112e6" name="Changes" comment="Création Classes">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/contrats/SignUpFailed.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/implementations/Bill.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/implementations/MovieDesc.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/implementations/MovieDescExtended.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/implementations/VODService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/contrats/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/contrats/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/contrats/Facture.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/implementations/ClientImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/implementations/ClientImplement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contrats/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/contrats/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contrats/Distante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/contrats/Distante.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contrats/Facture.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/implementations/Bill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/implementations/Bill.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/implementations/IntObjet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/implementations/IntObjet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/implementations/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/implementations/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/implementations/ObjetDistant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/implementations/Connection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/implementations/MovieDesc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/implementations/MovieDesc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/implementations/VODService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/implementations/VODService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +72,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664782682184</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Création Classes">
+      <created>1664784664231</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1664784664231</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

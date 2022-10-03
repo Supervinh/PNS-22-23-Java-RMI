@@ -1,4 +1,7 @@
 package implementations;
 
-public class VODService {
+import java.rmi.server.UnicastRemoteObject;
+
+public class VODService extends UnicastRemoteObject {
+
 }
