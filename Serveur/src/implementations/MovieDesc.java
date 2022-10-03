@@ -6,4 +6,5 @@ public class MovieDesc implements Serializable {
     String movieName;
     String isbn;
     String synopsis;
+    Bill bill;
 }
