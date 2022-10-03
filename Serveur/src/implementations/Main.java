@@ -1,3 +1,8 @@
+/*
+ @author: Bourdeau Quentin
+          Faucher Vinh
+
+ */
 package implementations;
 
 import contrats.Distante;
