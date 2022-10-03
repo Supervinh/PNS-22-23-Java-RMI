@@ -1,5 +1,6 @@
 package contrats;
 
+import implementations.Bill;
 import implementations.MovieDesc;
 
 import java.rmi.Remote;
@@ -8,5 +9,5 @@ import java.util.List;
 
 public interface IVODService extends Remote {
     List<MovieDesc> viewCatalog() throws RemoteException;
-    IBill playmovie(String isbn, IConnection box) throws RemoteException;
+    Bill playmovie(String isbn, IConnection box) throws RemoteException;
 }

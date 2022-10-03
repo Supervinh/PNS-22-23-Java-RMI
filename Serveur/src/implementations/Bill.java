@@ -1,15 +1,11 @@
 package implementations;
 
-import contrats.IBill;
-
 import java.io.Serializable;
-import java.math.BigInteger;
 
-public class Bill implements Serializable, IBill {
+public class Bill implements Serializable {
     String movieName;
     float price;
 
-    @Override
     public boolean pay() {
         return true; // payment isn't a part of this project
     }
