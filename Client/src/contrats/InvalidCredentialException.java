@@ -1,9 +1,9 @@
 package contrats;
 
-public class InvalidCredentialException extends Throwable {
+public class InvalidCredentialException extends Exception {
 
-    InvalidCredentialException() throws Throwable {
-        throw new Throwable("Credentials are invalid");
+    public InvalidCredentialException(){
+        super("Account doesn't exist, please proceed through registration first");
     }
 
 }

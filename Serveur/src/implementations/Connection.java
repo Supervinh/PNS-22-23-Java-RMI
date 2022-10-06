@@ -9,6 +9,7 @@ import java.lang.reflect.Array;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Connection extends UnicastRemoteObject implements Remote, IConnection {
@@ -20,28 +21,32 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
     public Connection(int i) throws RemoteException{
         super(i);
         vod = new VODService(i);
+        userList = new ArrayList<>();
     }
 
     @Override
     public boolean register(String mail, String pwd) throws RemoteException, SignUpFailed {
-        User reg = new User(mail, pwd);
-        if(userList.contains(reg)){
-            throw new SignUpFailed();
+        for(User u : userList){
+            if(u.mail.equals(mail)){
+                throw new SignUpFailed();
+            }
         }
-        else{
-            userList.add(reg);
+            userList.add(new User(mail, pwd));
+
+        for(User u : userList){
+            System.out.print(u.mail);
         }
+        System.out.println();
         return true;
     }
 
     @Override
     public IVODService login(String mail, String pwd) throws RemoteException, InvalidCredentialException {
-        User login = new User(mail, pwd);
-        if(userList.contains(login)){
-            return vod;
+        for(User u : userList){
+            if(u.mail.equals(mail)){
+                return vod;
+            }
         }
-        else{
             throw new InvalidCredentialException();
-        }
     }
 }

@@ -1,9 +1,9 @@
 package contrats;
 
-public class SignUpFailed extends Throwable {
+public class SignUpFailed extends Exception {
 
-    SignUpFailed() throws Throwable {
-        throw new Throwable("E-mail already used");
+    public SignUpFailed(){
+        super("Account already exists");
     }
 
 

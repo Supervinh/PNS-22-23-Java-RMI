@@ -14,7 +14,7 @@ import java.rmi.registry.Registry;
 public class Main {
     public static void main(String[] args) throws RemoteException {
         try {
-            IConnection d = new Connection(10001);
+            IConnection d = new Connection(2001);
             Registry reg = LocateRegistry.createRegistry(2001);
             reg.rebind("MonOd",d);
         }
