@@ -18,4 +18,16 @@ public class MovieDesc implements Serializable {
     public Bill getBill() {
         return bill;
     }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    @Override
+    public String toString() {
+        return "movieName='" + movieName + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", synopsis='" + synopsis + '\'' +
+                ", bill=" + bill.getPrice();
+    }
 }
