@@ -41,7 +41,7 @@ public class Main {
                         d.register(mail, pwd);
                         System.out.println("You have been registered\n");
                     } catch (SignUpFailed signUpFailed) {
-                        signUpFailed.printStackTrace();
+                        System.out.println(signUpFailed.getMessage());
                     }
                     break;
                 case 1:
@@ -49,7 +49,7 @@ public class Main {
                         vod = d.login(mail, pwd);
                         System.out.println("You have been logged in\n");
                     } catch (InvalidCredentialException invalidCredentialException) {
-                        invalidCredentialException.printStackTrace();
+                        System.out.println(invalidCredentialException.getMessage());
                     }
                     break;
             }
