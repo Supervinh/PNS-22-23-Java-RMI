@@ -18,33 +18,37 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws RemoteException, NotBoundException, SignUpFailed, InvalidCredentialException {
+    public static void main(String[] args) throws RemoteException, NotBoundException {
         Registry reg = LocateRegistry.getRegistry("localhost", 2001);
         IConnection d = (IConnection) reg.lookup("MonOd");
-        System.out.println(d);
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter 0 if you want to register, 1 if you want to log in : ");
-        int number = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Enter your mail : ");
-        String mail = scanner.nextLine();
-        System.out.println("Enter your password : ");
-        String pwd = scanner.nextLine();
-        System.out.println(mail + pwd);
-        switch (number) {
-            case 0:
-                try {
-                    d.register(mail, pwd);
-                } catch (SignUpFailed signUpFailed) {
-                    signUpFailed.printStackTrace();
-                }
-                break;
-            case 1:
-                try {
-                    d.login(mail, pwd);
-                } catch (InvalidCredentialException invalidCredentialException) {
-                    invalidCredentialException.printStackTrace();
-                }
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("Enter 0 if you want to register, 1 if you want to log in : ");
+            int number = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println("Enter your mail : ");
+            String mail = scanner.nextLine();
+            System.out.println("Enter your password : ");
+            String pwd = scanner.nextLine();
+            System.out.println(mail + pwd);
+            switch (number) {
+                case 0:
+                    try {
+                        d.register(mail, pwd);
+                    } catch (SignUpFailed signUpFailed) {
+                        signUpFailed.printStackTrace();
+                    }
+                    break;
+                case 1:
+                    try {
+                        d.login(mail, pwd);
+                        exit = true;
+                    } catch (InvalidCredentialException invalidCredentialException) {
+                        invalidCredentialException.printStackTrace();
+                    }
+                    break;
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ public class VODService extends UnicastRemoteObject implements IVODService {
     private List<MovieDesc> Catalog;
     private List<Movie> listMovies;
 
-    protected VODService(int port) throws RemoteException {
+    VODService(int port) throws RemoteException {
         super(port);
         Catalog = new ArrayList<>();
         listMovies = new ArrayList<>();

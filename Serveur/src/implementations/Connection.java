@@ -5,7 +5,6 @@ import contrats.IVODService;
 import contrats.InvalidCredentialException;
 import contrats.SignUpFailed;
 
-import java.lang.reflect.Array;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -18,7 +17,7 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
     VODService vod;
 
 
-    public Connection(int i) throws RemoteException{
+    public Connection(int i) throws RemoteException {
         super(i);
         vod = new VODService(i);
         userList = new ArrayList<>();
@@ -26,27 +25,22 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
 
     @Override
     public boolean register(String mail, String pwd) throws RemoteException, SignUpFailed {
-        for(User u : userList){
-            if(u.mail.equals(mail)){
+        for (User u : userList) {
+            if (u.mail.equals(mail)) {
                 throw new SignUpFailed();
             }
         }
-            userList.add(new User(mail, pwd));
-
-        for(User u : userList){
-            System.out.print(u.mail);
-        }
-        System.out.println();
+        userList.add(new User(mail, pwd));
         return true;
     }
 
     @Override
     public IVODService login(String mail, String pwd) throws RemoteException, InvalidCredentialException {
-        for(User u : userList){
-            if(u.mail.equals(mail)){
+        for (User u : userList) {
+            if (u.mail.equals(mail)) {
                 return vod;
             }
         }
-            throw new InvalidCredentialException();
+        throw new InvalidCredentialException();
     }
 }
