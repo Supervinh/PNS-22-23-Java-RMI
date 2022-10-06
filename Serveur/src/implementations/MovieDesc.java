@@ -7,4 +7,11 @@ public class MovieDesc implements Serializable {
     String isbn;
     String synopsis;
     Bill bill;
+
+    public MovieDesc(String movieName, String isbn, String synopsis, Bill bill) {
+        this.movieName = movieName;
+        this.isbn = isbn;
+        this.synopsis = synopsis;
+        this.bill = bill;
+    }
 }
