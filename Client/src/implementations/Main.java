@@ -21,6 +21,7 @@ public class Main {
     public static void main(String[] args) throws RemoteException, NotBoundException, SignUpFailed, InvalidCredentialException {
         Registry reg = LocateRegistry.getRegistry("localhost", 2001);
         IConnection d = (IConnection) reg.lookup("MonOd");
+        System.out.println(d);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter 0 if you want to register, 1 if you want to log in : ");
         int number = scanner.nextInt();
@@ -29,6 +30,7 @@ public class Main {
         String mail = scanner.nextLine();
         System.out.println("Enter your password : ");
         String pwd = scanner.nextLine();
+        System.out.println(mail + pwd);
         switch (number) {
             case 0:
                 try {
