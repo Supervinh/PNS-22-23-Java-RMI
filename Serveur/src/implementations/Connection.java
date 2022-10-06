@@ -5,9 +5,21 @@ import contrats.IVODService;
 import contrats.InvalidCredentialException;
 import contrats.SignUpFailed;
 
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+import java.io.*;
+import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.KeySpec;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,31 +29,95 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
     VODService vod;
 
 
-    public Connection(int i) throws RemoteException {
+    public Connection(int i) throws RemoteException{
         super(i);
         vod = new VODService(i);
         userList = new ArrayList<>();
+
+    }
+
+    boolean CSVcontains(String mail, String pwd) throws IOException {
+        String row;
+        BufferedReader csvReader = new BufferedReader(new FileReader("./data/users.csv"));
+        while ((row = csvReader.readLine()) != null) {
+            String[] data = row.split(",");
+            if (data[0].equals(mail) && data[1].equals(Connection.encode(pwd))){
+                return true;
+            }
+        }
+
+        csvReader.close();
+        return false;
+    }
+
+
+    public static String encode(String password)
+    {
+        try
+        {
+            MessageDigest m = MessageDigest.getInstance("MD5");
+            m.update(password.getBytes());
+            byte[] bytes = m.digest();
+            StringBuilder s = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+            {
+                s.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            return s.toString();
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    void writeCSV(String mail, String pwd){
+        try {
+            Files.write(Paths.get("./data/users.csv"), (mail+','+Connection.encode(pwd)+'\n').getBytes(), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public boolean register(String mail, String pwd) throws RemoteException, SignUpFailed {
-        for (User u : userList) {
-            if (u.mail.equals(mail)) {
+        try {
+            if(CSVcontains(mail,pwd)){
                 throw new SignUpFailed();
             }
+            else{
+                writeCSV(mail,pwd);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        userList.add(new User(mail, pwd));
+//        for(User u : userList){
+//            if(u.mail.equals(mail)){
+//                throw new SignUpFailed();
+//            }
+//        }
+            userList.add(new User(mail, pwd));
         return true;
     }
 
     @Override
     public IVODService login(String mail, String pwd) throws RemoteException, InvalidCredentialException {
         User log = new User(mail, pwd);
-        for(User u : userList){
-            if(u.equals(log)){
+        try {
+            if (CSVcontains(mail,pwd)){
                 return vod;
             }
+    //        for(User u : userList){
+    //            if(u.equals(log)){
+    //                return vod;
+    //            }
+    //        }
+                throw new InvalidCredentialException();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
-        throw new InvalidCredentialException();
     }
 }
