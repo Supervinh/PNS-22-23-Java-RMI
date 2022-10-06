@@ -36,8 +36,9 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
 
     @Override
     public IVODService login(String mail, String pwd) throws RemoteException, InvalidCredentialException {
-        for (User u : userList) {
-            if (u.mail.equals(mail)) {
+        User log = new User(mail, pwd);
+        for(User u : userList){
+            if(u.equals(log)){
                 return vod;
             }
         }
