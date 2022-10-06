@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws RemoteException, NotBoundException, SignUpFailed, InvalidCredentialException {
+    public static void main(String[] args) throws RemoteException, NotBoundException {
         Registry reg = LocateRegistry.getRegistry("localhost", 2001);
         IConnection d = (IConnection) reg.lookup("MonOd");
         System.out.println(d);
@@ -30,7 +30,6 @@ public class Main {
         String mail = scanner.nextLine();
         System.out.println("Enter your password : ");
         String pwd = scanner.nextLine();
-        System.out.println(mail + pwd);
         switch (number) {
             case 0:
                 try {
