@@ -14,4 +14,8 @@ public class Bill implements Serializable {
         price = p;
         movieName = name;
     }
+
+    public float getPrice(){
+        return price;
+    }
 }
