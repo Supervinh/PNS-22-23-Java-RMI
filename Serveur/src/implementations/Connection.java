@@ -25,14 +25,12 @@ import java.util.List;
 
 public class Connection extends UnicastRemoteObject implements Remote, IConnection {
 
-    List<User> userList;
     VODService vod;
 
 
     public Connection(int i) throws RemoteException{
         super(i);
         vod = new VODService(i);
-        userList = new ArrayList<>();
 
     }
 
@@ -42,6 +40,20 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
         while ((row = csvReader.readLine()) != null) {
             String[] data = row.split(",");
             if (data[0].equals(mail) && data[1].equals(Connection.encode(pwd))){
+                return true;
+            }
+        }
+
+        csvReader.close();
+        return false;
+    }
+
+    boolean CSVcontains(String mail) throws IOException {
+        String row;
+        BufferedReader csvReader = new BufferedReader(new FileReader("./data/users.csv"));
+        while ((row = csvReader.readLine()) != null) {
+            String[] data = row.split(",");
+            if (data[0].equals(mail)){
                 return true;
             }
         }
@@ -84,7 +96,7 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
     @Override
     public boolean register(String mail, String pwd) throws RemoteException, SignUpFailed {
         try {
-            if(CSVcontains(mail,pwd)){
+            if(CSVcontains(mail)){
                 throw new SignUpFailed();
             }
             else{
@@ -93,12 +105,6 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        for(User u : userList){
-//            if(u.mail.equals(mail)){
-//                throw new SignUpFailed();
-//            }
-//        }
-            userList.add(new User(mail, pwd));
         return true;
     }
 
@@ -109,11 +115,7 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
             if (CSVcontains(mail,pwd)){
                 return vod;
             }
-    //        for(User u : userList){
-    //            if(u.equals(log)){
-    //                return vod;
-    //            }
-    //        }
+
                 throw new InvalidCredentialException();
         } catch (IOException e) {
             e.printStackTrace();
