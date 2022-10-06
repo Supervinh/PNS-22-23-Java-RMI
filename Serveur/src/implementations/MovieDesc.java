@@ -14,4 +14,8 @@ public class MovieDesc implements Serializable {
         this.synopsis = synopsis;
         this.bill = bill;
     }
+
+    public Bill getBill() {
+        return bill;
+    }
 }
