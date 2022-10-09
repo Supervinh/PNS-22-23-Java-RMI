@@ -11,8 +11,8 @@ import java.io.Serializable;
  * Facture contenant le "film" et son isbn associé
  */
 public class Movie implements Serializable {
-    private byte[] content;
-    private String isbn;
+    private final byte[] content;
+    private final String isbn;
 
     public Movie(String isbn, byte[] bytes) {
         this.isbn = isbn;

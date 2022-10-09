@@ -61,15 +61,18 @@ public class Main {
         }
 
         sleep(2500);
-        String isbn ="";
-            System.out.println("\nEnter the ISBN of the movie you want to watch : ");
-            isbn = scanner.nextLine();
+        String isbn;
+        Bill facture = null;
+        while (facture == null) {
             try {
-                vod.playMovie(isbn, cb);
+                System.out.println("\nEnter the ISBN of the movie you want to watch : ");
+                isbn = scanner.nextLine();
+                facture = vod.playMovie(isbn, cb);
+                System.out.println(facture);
             } catch (FilmNotFoundException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
-
+        }
 
     }
 }

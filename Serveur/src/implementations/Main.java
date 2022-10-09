@@ -10,6 +10,7 @@ import contrats.IConnection;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+
 /**
  * Classe permettant de lancer le serveur
  */
@@ -18,9 +19,8 @@ public class Main {
         try {
             IConnection d = new Connection(2001);
             Registry reg = LocateRegistry.createRegistry(2001);
-            reg.rebind("MonOd",d);
-        }
-        catch (RemoteException e) {
+            reg.rebind("MonOd", d);
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
     }

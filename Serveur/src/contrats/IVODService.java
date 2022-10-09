@@ -19,5 +19,6 @@ import java.util.List;
 
 public interface IVODService extends Remote {
     List<MovieDesc> viewCatalog() throws RemoteException;
+
     Bill playMovie(String isbn, IClientBox box) throws RemoteException, FilmNotFoundException;
 }

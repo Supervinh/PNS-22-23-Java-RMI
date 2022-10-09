@@ -11,10 +11,10 @@ import java.io.Serializable;
  * Classe contenant la description du film, c'est à dire le nom du film, son isbn, son synopsis et sa facture
  */
 public class MovieDesc implements Serializable {
-    private String movieName;
-    private String isbn;
-    private String synopsis;
-    private Bill bill;
+    private final String movieName;
+    private final String isbn;
+    private final String synopsis;
+    private final Bill bill;
 
     public MovieDesc(String movieName, String isbn, String synopsis, Bill bill) {
         this.movieName = movieName;
