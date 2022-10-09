@@ -3,16 +3,20 @@ package implementations;
 import java.io.Serializable;
 
 public class MovieDesc implements Serializable {
-    String movieName;
-    String isbn;
-    String synopsis;
-    Bill bill;
+    private String movieName;
+    private String isbn;
+    private String synopsis;
+    private Bill bill;
 
     public MovieDesc(String movieName, String isbn, String synopsis, Bill bill) {
         this.movieName = movieName;
         this.isbn = isbn;
         this.synopsis = synopsis;
         this.bill = bill;
+    }
+
+    public String getMovieName() {
+        return movieName;
     }
 
     public Bill getBill() {

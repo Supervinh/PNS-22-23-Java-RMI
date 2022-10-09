@@ -3,8 +3,8 @@ package implementations;
 import java.io.Serializable;
 
 public class Bill implements Serializable {
-    String movieName;
-    float price;
+    private String movieName;
+    private float price;
 
     public boolean pay() {
         return true; // payment isn't a part of this project
@@ -17,5 +17,9 @@ public class Bill implements Serializable {
 
     public float getPrice(){
         return price;
+    }
+
+    public String getMovieName() {
+        return movieName;
     }
 }

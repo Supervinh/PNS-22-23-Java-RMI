@@ -6,10 +6,7 @@
 package implementations;
 
 
-import contrats.IConnection;
-import contrats.IVODService;
-import contrats.InvalidCredentialException;
-import contrats.SignUpFailed;
+import contrats.*;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -23,7 +20,8 @@ import static java.lang.Thread.sleep;
 public class Main {
 
     public static void main(String[] args) throws RemoteException, NotBoundException, InterruptedException {
-        Registry reg = LocateRegistry.getRegistry("localhost", 2001);
+        IClientBox cb = new ClientBox("Quentin");
+        Registry reg = LocateRegistry.getRegistry(null, 2001);
         IConnection d = (IConnection) reg.lookup("MonOd");
         IVODService vod = null;
         Scanner scanner = new Scanner(System.in);
@@ -68,7 +66,11 @@ public class Main {
             System.out.println("\nEnter the ISBN of the movie you want to watch : ");
             isbn = scanner.nextLine();
             System.out.println(isbn);
-            vod.playmovie(isbn, d);
+            try {
+                vod.playMovie(isbn, cb);
+            } catch (FilmNotFoundException e) {
+                e.printStackTrace();
+            }
         }
 
 

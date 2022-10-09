@@ -1,5 +1,7 @@
 package implementations;
 
+import contrats.FilmNotFoundException;
+import contrats.IClientBox;
 import contrats.IConnection;
 import contrats.IVODService;
 
@@ -7,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class VODService extends UnicastRemoteObject implements IVODService {
@@ -27,8 +30,41 @@ public class VODService extends UnicastRemoteObject implements IVODService {
     }
 
     @Override
-    public Bill playmovie(String isbn, IConnection box) throws RemoteException{
-        return null;
+    public Bill playMovie(String isbn, IClientBox box) throws RemoteException, FilmNotFoundException {
+        Movie chosen = null;
+        MovieDesc chosenDesc = null;
+        for (Movie m : listMovies){
+            if(m.getIsbn().equals(isbn)){
+                chosen=m;
+                break;
+            }
+        }
+        for (MovieDesc md : Catalog){
+            if(md.getIsbn().equals(isbn)){
+                chosenDesc=md;
+                break;
+            }
+        }
+        if(chosen==null || chosenDesc==null){
+            throw new FilmNotFoundException();
+        }
+
+        byte[] data = chosen.getContent();
+        int nbByte = 10;
+
+
+
+        // on teste que la communication marche avant d'envoyer le Bill
+        box.stream(Arrays.copyOfRange(data, 0, nbByte));
+
+        new Thread(() -> {
+            // pour gerer le paiement on devrait attendre une confirmation que le client a paye ici
+            for (int index = nbByte; index < data.length; index += nbByte) {
+                box.stream(Arrays.copyOfRange(data, index, Math.min(index + nbByte, data.length)));
+            }
+        }).start();
+
+        return new Bill(12.0F,chosenDesc.getMovieName());
     }
 
     void inizialize(){
