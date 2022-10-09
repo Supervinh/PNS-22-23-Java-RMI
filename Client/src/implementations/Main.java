@@ -62,7 +62,6 @@ public class Main {
 
         sleep(2500);
         String isbn ="";
-        while (true) {
             System.out.println("\nEnter the ISBN of the movie you want to watch : ");
             isbn = scanner.nextLine();
             try {
@@ -70,7 +69,6 @@ public class Main {
             } catch (FilmNotFoundException e) {
                 e.printStackTrace();
             }
-        }
 
 
     }

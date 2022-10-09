@@ -43,6 +43,8 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
     }
     /*
     * Methode permettant de vérifier si le couple mail/mdp est correct
+    * meme si une liste a un cout de vérification plus faible, nous avons décidé
+    * de n'utiliser que le CSV pour la gestion de compte en ignorant la perte de performance potentielle
      */
     boolean CSVcontains(String mail, String pwd) throws IOException {
         String row;
