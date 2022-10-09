@@ -74,7 +74,11 @@ public class VODService extends UnicastRemoteObject implements IVODService {
         new Thread(() -> {
             // pour gerer le paiement on devrait attendre une confirmation que le client a paye ici
             for (int index = nbByte; index < data.length; index += nbByte) {
-                box.stream(Arrays.copyOfRange(data, index, Math.min(index + nbByte, data.length)));
+                try {
+                    box.stream(Arrays.copyOfRange(data, index, Math.min(index + nbByte, data.length)));
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
             }
         }).start();
 

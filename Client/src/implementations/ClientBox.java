@@ -11,8 +11,7 @@ import contrats.IClientBox;
 import java.nio.charset.StandardCharsets;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class ClientBox extends UnicastRemoteObject implements IClientBox {
 
@@ -22,7 +21,7 @@ public class ClientBox extends UnicastRemoteObject implements IClientBox {
         name = clientName;
     }
 
-    public void stream(byte[] chunck){
+    public void stream(byte[] chunck) throws RemoteException {
         System.out.println(new String(chunck, StandardCharsets.UTF_8));
     }
 
