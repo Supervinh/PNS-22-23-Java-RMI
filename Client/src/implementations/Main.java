@@ -65,7 +65,6 @@ public class Main {
         while (true) {
             System.out.println("\nEnter the ISBN of the movie you want to watch : ");
             isbn = scanner.nextLine();
-            System.out.println(isbn);
             try {
                 vod.playMovie(isbn, cb);
             } catch (FilmNotFoundException e) {
