@@ -23,6 +23,9 @@ import java.security.spec.KeySpec;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * CLasse implementant l'interface IConnection
+ */
 public class Connection extends UnicastRemoteObject implements Remote, IConnection {
 
     VODService vod;
@@ -33,7 +36,9 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
         vod = new VODService(i);
 
     }
-
+    /*
+    * Methode permettant de vérifier si le couple mail/mdp est correct
+     */
     boolean CSVcontains(String mail, String pwd) throws IOException {
         String row;
         BufferedReader csvReader = new BufferedReader(new FileReader("./data/users.csv"));
@@ -48,6 +53,9 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
         return false;
     }
 
+    /*
+    * Methode permettant de vérifier si mail est déjà utilisé
+     */
     boolean CSVcontains(String mail) throws IOException {
         String row;
         BufferedReader csvReader = new BufferedReader(new FileReader("./data/users.csv"));
@@ -63,6 +71,9 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
     }
 
 
+    /*
+    * Methode permettant de hasher le mot de passe
+     */
     public static String encode(String password)
     {
         try
@@ -84,6 +95,9 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
         }
     }
 
+    /*
+    * Methode permettant d'écrire dans le fichier CSV des utilisateurs pour les sauvegarder
+     */
     void writeCSV(String mail, String pwd){
         try {
             Files.write(Paths.get("./data/users.csv"), (mail+','+Connection.encode(pwd)+'\n').getBytes(), StandardOpenOption.APPEND);
@@ -93,6 +107,9 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
 
     }
 
+    /*
+    * Methode permettant d'enregistrer un utilisateur dans le fichier CSV
+     */
     @Override
     public boolean register(String mail, String pwd) throws RemoteException, SignUpFailed {
         try {
@@ -108,6 +125,9 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
         return true;
     }
 
+    /*
+    * Methode permettant à un utilisateur de se connecter
+     */
     @Override
     public IVODService login(String mail, String pwd) throws RemoteException, InvalidCredentialException {
         User log = new User(mail, pwd);

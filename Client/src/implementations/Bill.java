@@ -2,12 +2,15 @@ package implementations;
 
 import java.io.Serializable;
 
+/**
+ * Facture contenant un prix et un nom de film
+ */
 public class Bill implements Serializable {
     String movieName;
     float price;
 
     public boolean pay() {
-        return true; // payment isn't a part of this project
+        return true; // Le paiement ne fait pas parti du projet
     }
 
     public Bill(float p, String name){
