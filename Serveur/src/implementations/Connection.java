@@ -137,7 +137,6 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
      */
     @Override
     public IVODService login(String mail, String pwd) throws RemoteException, InvalidCredentialException {
-        User log = new User(mail, pwd);
         try {
             if (CSVcontains(mail,pwd)){
                 return vod;
