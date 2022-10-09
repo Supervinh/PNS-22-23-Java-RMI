@@ -1,7 +1,15 @@
+/*
+ @author: Bourdeau Quentin
+          Faucher Vinh
+
+ */
 package implementations;
 
 import java.io.Serializable;
 
+/**
+ * Facture contenant le "film" et son isbn associé
+ */
 public class Movie implements Serializable {
     private byte[] content;
     private String isbn;

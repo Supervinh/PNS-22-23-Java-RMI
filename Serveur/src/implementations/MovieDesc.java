@@ -1,7 +1,15 @@
+/*
+ @author: Bourdeau Quentin
+          Faucher Vinh
+
+ */
 package implementations;
 
 import java.io.Serializable;
 
+/**
+ * Classe contenant la description du film, c'est à dire le nom du film, son isbn, son synopsis et sa facture
+ */
 public class MovieDesc implements Serializable {
     private String movieName;
     private String isbn;
