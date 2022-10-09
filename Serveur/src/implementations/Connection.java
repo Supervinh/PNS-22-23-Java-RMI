@@ -80,6 +80,8 @@ public class Connection extends UnicastRemoteObject implements Remote, IConnecti
 
     /*
     * Methode permettant de hasher le mot de passe
+    * On peut noter qu'on encode le mot de passe correctement mais que la discussion avec le Client se fait en clair
+    * présentant donc une grosse faille de sécurité
      */
     public static String encode(String password)
     {
